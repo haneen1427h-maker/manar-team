@@ -111,7 +111,7 @@ inputs.forEach(function(el){var k=el.dataset.m;var v=ls(k);if(v)el.value=v;else 
     <!-- زر الحفظ -->
     <button onclick="assignMission()" style="padding: 8px 15px; border-radius: 5px; border: none; background: #00bcd4; color: #fff; cursor: pointer;">استلام المهمة</button>
     
-    <!-- قائمة عرض المهام والمسؤولين عنها -->
+    <!-- قائمة عرض المهام -->
     <ul id="missionsList" style="list-style: none; padding: 0; margin-top: 15px; text-align: right; display: inline-block;"></ul>
 </div>
 
@@ -127,7 +127,7 @@ inputs.forEach(function(el){var k=el.dataset.m;var v=ls(k);if(v)el.value=v;else 
             return;
         }
 
-        // إرسال البيانات بأسماء الأعمدة المطابقة تماماً لجدول جوجل (A=mission, B=name)
+        // إرسال البيانات بحيث نضمن نزول الاسم في A والمهمة في B
         fetch(apiUrl, {
             method: 'POST',
             headers: {
@@ -135,7 +135,7 @@ inputs.forEach(function(el){var k=el.dataset.m;var v=ls(k);if(v)el.value=v;else 
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                data: { mission: missionVal, name: nameVal }
+                data: { name: nameVal, mission: missionVal }
             })
         })
         .then(response => response.json())
