@@ -95,27 +95,42 @@ inputs.forEach(function(el){var k=el.dataset.m;var v=ls(k);if(v)el.value=v;else 
   });
 })();
 </script>
-
 <div style="text-align: center; margin: 20px; color: #fff;">
-    <h3>سجل أسماء الفريق / الزوار</h3>
-    <input type="text" id="userName" placeholder="اكتب اسمك هنا..." style="padding: 8px; border-radius: 5px; border: none; width: 200px; margin-left: 5px;">
-    <button onclick="saveName()" style="padding: 8px 15px; border-radius: 5px; border: none; background: #00bcd4; color: #fff; cursor: pointer;">حفظ الاسم</button>
+    <h3>توزيع المهام وأسماء الفريق</h3>
     
-    <ul id="namesList" style="list-style: none; padding: 0; margin-top: 15px;">
-        <!-- ستظهر الأسماء هنا تلقائياً -->
+    <!-- اختيار المهمة -->
+    <select id="missionSelect" style="padding: 8px; border-radius: 5px; margin: 5px;">
+        <option value="mission1">المهمة الأولى</option>
+        <option value="mission2">المهمة الثانية</option>
+        <option value="mission3">المهمة الثالثة</option>
+    </select>
+
+    <!-- كتابة الاسم -->
+    <input type="text" id="assignName" placeholder="اكتب اسمك هنا..." style="padding: 8px; border-radius: 5px; border: none; width: 180px; margin: 5px;">
+    
+    <!-- زر الحفظ -->
+    <button onclick="assignMission()" style="padding: 8px 15px; border-radius: 5px; border: none; background: #00bcd4; color: #fff; cursor: pointer;">استلام المهمة</button>
+    
+    <!-- قائمة عرض المهام والمسؤولين عنها -->
+    <ul id="missionsList" style="list-style: none; padding: 0; margin-top: 15px; text-align: right; display: inline-block;">
+        <!-- ستظهر المهام وأصحابها هنا تلقائياً -->
     </ul>
 </div>
 
 <script>
     const apiUrl = 'https://sheetdb.io/api/v1/imceb02ne6xkh';
-  
-    function saveName() {
-        const nameInput = document.getElementById('userName').value;
-        if (!nameInput) {
+
+    // دالة لحفظ أو تحديث اسم الشخص للمهمة وإرساله لجدول جوجل
+    function assignMission() {
+        const mission = document.getElementById('missionSelect').value;
+        const name = document.getElementById('assignName').value;
+
+        if (!name) {
             alert('الرجاء كتابة الاسم أولاً!');
             return;
         }
 
+        // إرسال البيانات إلى SheetDB
         fetch(apiUrl, {
             method: 'POST',
             headers: {
@@ -123,32 +138,34 @@ inputs.forEach(function(el){var k=el.dataset.m;var v=ls(k);if(v)el.value=v;else 
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                data: { name: nameInput }
+                data: { mission: mission, name: name }
             })
         })
         .then(response => response.json())
         .then(data => {
-            alert('تم حفظ الاسم بنجاح!');
-            document.getElementById('userName').value = '';
-            loadNames(); // تحديث القائمة مباشرة
+            alert('تم تسجيل اسمك في المهمة بنجاح!');
+            document.getElementById('assignName').value = '';
+            loadMissions(); // تحديث القائمة مباشرة
         })
         .catch(error => console.error('Error:', error));
     }
 
-    // دالة لجلب وعرض الأسماء لكل الزوار
-    function loadNames() {
+    // دالة لجلب وعرض المهام والأسماء لكل الزوار لحظياً
+    function loadMissions() {
         fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
-            const list = document.getElementById('namesList');
+            const list = document.getElementById('missionsList');
             list.innerHTML = '';
+            
+            // عرض أحدث البيانات لكل مهمة
             data.forEach(row => {
-                if(row.name) {
+                if(row.mission && row.name) {
                     const li = document.createElement('li');
-                    li.textContent = row.name;
-                    li.style.margin = '5px 0';
+                    li.textContent = `📌 ${row.mission}: المسؤول هو (${row.name})`;
+                    li.style.margin = '8px 0';
                     li.style.background = 'rgba(255,255,255,0.1)';
-                    li.style.padding = '5px';
+                    li.style.padding = '8px 12px';
                     li.style.borderRadius = '4px';
                     list.appendChild(li);
                 }
@@ -156,7 +173,8 @@ inputs.forEach(function(el){var k=el.dataset.m;var v=ls(k);if(v)el.value=v;else 
         });
     }
 
-    window.onload = loadNames;
+    // جلب المهام مباشرة عند فتح الصفحة
+    window.onload = loadMissions;
 </script>
 
 </body>
