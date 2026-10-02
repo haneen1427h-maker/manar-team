@@ -95,6 +95,7 @@ inputs.forEach(function(el){var k=el.dataset.m;var v=ls(k);if(v)el.value=v;else 
   });
 })();
 </script>
+
 <div style="text-align: center; margin: 20px; color: #fff;">
     <h3>توزيع المهام وأسماء الفريق</h3>
     
@@ -127,7 +128,7 @@ inputs.forEach(function(el){var k=el.dataset.m;var v=ls(k);if(v)el.value=v;else 
             return;
         }
 
-        // إرسال البيانات بحيث نضمن نزول الاسم في A والمهمة في B
+        // إرسال البيانات كمصفوفة لضمان الترتيب: العمود الأول name (A) والعمود الثاني mission (B)
         fetch(apiUrl, {
             method: 'POST',
             headers: {
@@ -135,7 +136,9 @@ inputs.forEach(function(el){var k=el.dataset.m;var v=ls(k);if(v)el.value=v;else 
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                data: { name: nameVal, mission: missionVal }
+                data: [
+                    { "name": nameVal, "mission": missionVal }
+                ]
             })
         })
         .then(response => response.json())
