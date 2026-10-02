@@ -100,9 +100,9 @@ inputs.forEach(function(el){var k=el.dataset.m;var v=ls(k);if(v)el.value=v;else 
     
     <!-- اختيار المهمة -->
     <select id="missionSelect" style="padding: 8px; border-radius: 5px; margin: 5px;">
-        <option value="mission1">المهمة الأولى</option>
-        <option value="mission2">المهمة الثانية</option>
-        <option value="mission3">المهمة الثالثة</option>
+        <option value="المهمة الأولى">المهمة الأولى</option>
+        <option value="المهمة الثانية">المهمة الثانية</option>
+        <option value="المهمة الثالثة">المهمة الثالثة</option>
     </select>
 
     <!-- كتابة الاسم -->
@@ -112,25 +112,22 @@ inputs.forEach(function(el){var k=el.dataset.m;var v=ls(k);if(v)el.value=v;else 
     <button onclick="assignMission()" style="padding: 8px 15px; border-radius: 5px; border: none; background: #00bcd4; color: #fff; cursor: pointer;">استلام المهمة</button>
     
     <!-- قائمة عرض المهام والمسؤولين عنها -->
-    <ul id="missionsList" style="list-style: none; padding: 0; margin-top: 15px; text-align: right; display: inline-block;">
-        <!-- ستظهر المهام وأصحابها هنا تلقائياً -->
-    </ul>
+    <ul id="missionsList" style="list-style: none; padding: 0; margin-top: 15px; text-align: right; display: inline-block;"></ul>
 </div>
 
 <script>
     const apiUrl = 'https://sheetdb.io/api/v1/imceb02ne6xkh';
 
-    // دالة لحفظ أو تحديث اسم الشخص للمهمة وإرساله لجدول جوجل
     function assignMission() {
-        const mission = document.getElementById('missionSelect').value;
-        const name = document.getElementById('assignName').value;
+        const missionVal = document.getElementById('missionSelect').value;
+        const nameVal = document.getElementById('assignName').value;
 
-        if (!name) {
+        if (!nameVal) {
             alert('الرجاء كتابة الاسم أولاً!');
             return;
         }
 
-        // إرسال البيانات إلى SheetDB
+        // إرسال البيانات بأسماء الأعمدة المطابقة تماماً لجدول جوجل (A=mission, B=name)
         fetch(apiUrl, {
             method: 'POST',
             headers: {
@@ -138,19 +135,18 @@ inputs.forEach(function(el){var k=el.dataset.m;var v=ls(k);if(v)el.value=v;else 
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                data: { mission: mission, name: name }
+                data: { mission: missionVal, name: nameVal }
             })
         })
         .then(response => response.json())
         .then(data => {
             alert('تم تسجيل اسمك في المهمة بنجاح!');
             document.getElementById('assignName').value = '';
-            loadMissions(); // تحديث القائمة مباشرة
+            loadMissions();
         })
         .catch(error => console.error('Error:', error));
     }
 
-    // دالة لجلب وعرض المهام والأسماء لكل الزوار لحظياً
     function loadMissions() {
         fetch(apiUrl)
         .then(response => response.json())
@@ -158,7 +154,6 @@ inputs.forEach(function(el){var k=el.dataset.m;var v=ls(k);if(v)el.value=v;else 
             const list = document.getElementById('missionsList');
             list.innerHTML = '';
             
-            // عرض أحدث البيانات لكل مهمة
             data.forEach(row => {
                 if(row.mission && row.name) {
                     const li = document.createElement('li');
@@ -173,9 +168,7 @@ inputs.forEach(function(el){var k=el.dataset.m;var v=ls(k);if(v)el.value=v;else 
         });
     }
 
-    // جلب المهام مباشرة عند فتح الصفحة
     window.onload = loadMissions;
 </script>
-
 </body>
 </html>
