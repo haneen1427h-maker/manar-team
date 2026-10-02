@@ -1,14 +1,26 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
+
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover">
 
 <title>ملف المهمة</title>
 
+
 <style>
+
+/* =========================
+   الألوان الأساسية
+========================= */
+
 :root{
+
   box-sizing:border-box;
+
   padding-top:env(safe-area-inset-top,0px);
   padding-bottom:env(safe-area-inset-bottom,0px);
 
@@ -18,370 +30,703 @@
   --line:#b7c9e4;
   --chip:#cfdcf2;
   --ic:#dfe8e0;
+
   --head1:#3a5c92;
   --head2:#fff;
+
 }
 
-*{box-sizing:border-box}
+
+/* =========================
+   الإعدادات العامة
+========================= */
+
+*{
+  box-sizing:border-box;
+}
+
 
 html{
   scroll-padding-top:env(safe-area-inset-top,0px);
 }
 
+
 body{
+
   margin:0;
+
   background:var(--bg);
+
   color:var(--ink);
-  font-family:"Tajawal","Segoe UI",Tahoma,sans-serif;
+
+  font-family:
+    "Tajawal",
+    "Segoe UI",
+    Tahoma,
+    sans-serif;
+
 }
+
+
+/* =========================
+   Header
+========================= */
 
 header{
-  background:linear-gradient(var(--head1),var(--head2));
+
+  background:
+    linear-gradient(
+      var(--head1),
+      var(--head2)
+    );
+
   padding:28px 20px 40px;
+
   text-align:center;
+
 }
+
 
 .top{
+
   display:flex;
+
   justify-content:space-between;
+
   align-items:center;
+
   max-width:960px;
+
   margin:0 auto;
+
   direction:ltr;
+
   gap:12px;
+
   flex-wrap:wrap;
+
 }
+
 
 .big{
+
   font-size:clamp(28px,6vw,52px);
+
   font-weight:900;
+
   color:#1c2f57;
+
   line-height:1;
+
   text-align:left;
-  font-family:Impact,"Arial Black",sans-serif;
+
+  font-family:
+    Impact,
+    "Arial Black",
+    sans-serif;
+
   letter-spacing:1px;
+
 }
+
 
 .big span{
+
   display:inline-block;
+
   background:#bcd0f0;
+
   padding:4px 14px;
+
   font-size:.45em;
+
   margin-top:6px;
+
   font-family:Arial,sans-serif;
+
   letter-spacing:2px;
+
 }
+
 
 .logos{
+
   font-weight:700;
+
   font-size:14px;
+
   text-align:center;
+
   color:#1c2f57;
+
   border:2px dashed var(--line);
+
   padding:10px 14px;
+
   border-radius:12px;
+
 }
+
 
 .title{
+
   display:inline-block;
+
   margin-top:20px;
+
   background:#fbf4e6;
+
   color:#2d4a7a;
+
   padding:8px 26px;
+
   border-radius:12px;
+
   font-weight:800;
+
   font-size:20px;
+
 }
+
+
+/* =========================
+   بطاقات المهام
+========================= */
 
 main{
+
   max-width:960px;
+
   margin:-10px auto 0;
+
   padding:20px 14px 40px;
+
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(300px,1fr)
+    );
+
   gap:22px;
+
 }
+
 
 .card{
+
   position:relative;
+
   background:var(--card);
+
   border:1.5px solid var(--line);
-  border-radius:6px 24px 6px 6px;
+
+  border-radius:
+    6px 24px 6px 6px;
+
   padding:30px 12px 12px;
+
 }
+
 
 .tag{
+
   position:absolute;
+
   top:-12px;
+
   left:14px;
+
   direction:ltr;
+
   background:var(--bg);
+
   border:2px solid var(--ink);
+
   padding:1px 10px;
+
   font-weight:800;
+
   font-size:13px;
+
   transform:rotate(-4deg);
+
   font-family:Arial,sans-serif;
+
 }
+
 
 .row{
+
   display:flex;
+
   align-items:center;
+
   gap:10px;
+
   margin-bottom:10px;
+
 }
+
 
 .ic{
+
   flex:none;
+
   width:40px;
+
   height:40px;
+
   border-radius:50%;
+
   background:var(--ic);
+
   display:grid;
+
   place-items:center;
+
   font-size:18px;
+
 }
+
 
 .f{
+
   flex:1;
+
   position:relative;
+
   background:var(--bg);
+
   border:1px solid var(--line);
+
   border-radius:10px;
+
   padding:18px 12px 8px;
+
   min-height:50px;
+
   font-size:14px;
-  border-bottom:1px dashed var(--line);
+
+  border-bottom:
+    1px dashed var(--line);
+
 }
+
 
 .f b{
+
   position:absolute;
+
   top:-9px;
+
   right:10px;
+
   background:var(--chip);
+
   color:var(--ink);
+
   font-size:11px;
+
   padding:1px 10px;
+
   border-radius:6px;
+
 }
+
 
 .f input{
+
   width:100%;
+
   border:0;
+
   background:transparent;
+
   color:var(--ink);
+
   font:inherit;
+
   font-size:14px;
+
   outline:none;
+
   padding:0;
+
 }
 
-.f input::placeholder{
-  color:#8aa0c4;
-}
 
 .dl{
+
   grid-column:1/-1;
+
   max-width:420px;
+
   margin:0 auto;
+
   width:100%;
+
 }
+
 
 #st{
+
   text-align:center;
+
   font-size:12px;
+
   opacity:.7;
+
   padding-bottom:20px;
+
 }
 
-/* قسم استلام المهام */
+
+/* =========================
+   قسم استلام المهام
+========================= */
 
 .assignment{
+
   max-width:900px;
-  margin:10px auto 50px;
+
+  margin:
+    10px auto 50px;
+
   padding:25px 18px;
+
   background:var(--card);
+
   border:1.5px solid var(--line);
+
   border-radius:20px;
+
 }
+
 
 .assignment-title{
+
   text-align:center;
+
   margin:0 0 8px;
+
   font-size:22px;
+
 }
+
 
 .assignment-subtitle{
+
   text-align:center;
+
   font-size:14px;
+
   opacity:.75;
+
   margin-bottom:22px;
+
 }
 
+
 .assignment-box{
+
   display:flex;
+
   justify-content:center;
+
   align-items:center;
+
   gap:10px;
+
   flex-wrap:wrap;
+
 }
+
 
 .assignment-box select,
 .assignment-box input{
+
   padding:12px;
+
   border:1px solid var(--line);
+
   border-radius:10px;
+
   background:var(--bg);
+
   color:var(--ink);
+
   font-family:inherit;
+
   outline:none;
+
 }
+
 
 .assignment-box select{
+
   min-width:250px;
+
 }
+
 
 .assignment-box input{
+
   width:200px;
+
 }
+
 
 .assign-btn{
+
   padding:12px 20px;
+
   border:0;
+
   border-radius:10px;
+
   background:#3a5c92;
+
   color:white;
+
   font-family:inherit;
+
   font-weight:700;
+
   cursor:pointer;
+
 }
+
 
 .assign-btn:hover{
+
   opacity:.9;
+
 }
+
 
 #message{
+
   text-align:center;
+
   margin-top:15px;
+
   font-size:14px;
+
   font-weight:700;
+
 }
+
 
 .mission-results{
+
   margin-top:25px;
+
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(250px,1fr)
+    );
+
   gap:12px;
+
 }
+
 
 .mission-result{
+
   background:var(--bg);
+
   border:1px solid var(--line);
+
   border-radius:12px;
+
   padding:14px;
+
 }
+
 
 .mission-result strong{
+
   display:block;
+
   margin-bottom:6px;
+
 }
+
 
 .available{
+
   color:#6c8f68;
+
   font-size:13px;
+
 }
+
 
 .taken{
+
   color:#3a5c92;
+
   font-weight:700;
+
 }
 
+
+/* =========================
+   الجوال
+========================= */
+
 @media(max-width:600px){
+
   main{
+
     grid-template-columns:1fr;
+
   }
 
+
   .assignment-box{
+
     flex-direction:column;
+
   }
+
 
   .assignment-box select,
   .assignment-box input,
   .assign-btn{
+
     width:100%;
+
     max-width:350px;
+
   }
+
 }
+
 </style>
+
 </head>
 
+
 <body>
+
+
+<!-- =========================
+     Header
+========================= -->
 
 <header>
 
   <div class="top">
 
     <div class="logos">
-      <span style="color:#bcd0f0;">مَنار العِلم EL MANAR</span>
+
+      <span style="color:#bcd0f0;">
+        مَنار العِلم EL MANAR
+      </span>
+
     </div>
 
+
     <div class="big">
-      CONFIDENTIAL<br>
-      <span>TEAM MISSION</span>
+
+      CONFIDENTIAL
+
+      <br>
+
+      <span>
+        TEAM MISSION
+      </span>
+
     </div>
 
   </div>
 
+
   <div class="title">
+
     ☆ ملف المهمة ☆
+
   </div>
 
 </header>
 
 
+
+<!-- =========================
+     بطاقات المهام
+========================= -->
+
 <main id="m"></main>
+
 
 <div id="st"></div>
 
 
+
 <!-- =========================
-     قسم استلام المهام
+     استلام المهمة
 ========================= -->
 
 <section class="assignment">
 
+
   <h2 class="assignment-title">
+
     🎯 استلام المهمة
+
   </h2>
 
+
   <div class="assignment-subtitle">
+
     اختاري المهمة المناسبة لك واكتبي اسمك لاستلامها 🤍
+
   </div>
+
+
 
   <div class="assignment-box">
 
+
+    <!-- اختيار المهمة -->
+
     <select id="missionSelect">
-      <option value="">اختاري المهمة</option>
+
+      <option value="">
+        اختاري المهمة
+      </option>
+
 
       <option value="شرح الشابتر الثاني">
         شرح الشابتر الثاني
       </option>
 
+
       <option value="ملخص الشابتر الثاني">
         ملخص الشابتر الثاني
       </option>
+
 
       <option value="كويز الشابتر الثاني">
         كويز الشابتر الثاني
       </option>
 
+
       <option value="تدقيق شرح الشابتر الثاني">
         تدقيق شرح الشابتر الثاني
       </option>
 
+
       <option value="تدقيق ملخص الشابتر الثاني">
         تدقيق ملخص الشابتر الثاني
       </option>
+
 
       <option value="تدقيق كويز الشابتر الثاني">
         تدقيق كويز الشابتر الثاني
@@ -389,6 +734,9 @@ main{
 
     </select>
 
+
+
+    <!-- اسم العضو -->
 
     <input
       type="text"
@@ -398,34 +746,48 @@ main{
     >
 
 
+
+    <!-- زر الاستلام -->
+
     <button
       class="assign-btn"
       onclick="assignMission()"
     >
+
       استلام المهمة
+
     </button>
 
   </div>
 
 
+
+  <!-- رسالة الحالة -->
+
   <div id="message"></div>
 
+
+
+  <!-- عرض المهام -->
 
   <div
     id="missionsList"
     class="mission-results"
   ></div>
 
+
 </section>
+
 
 
 <script>
 
+
 /* =====================================================
-   المهام الست
+   أسماء المهام
 ===================================================== */
 
-var missionDetails = [
+const missionDetails = [
 
   "شرح الشابتر الثاني",
 
@@ -442,170 +804,153 @@ var missionDetails = [
 ];
 
 
-var rows = [
 
-  [
-    "🎯",
-    "رقم المهمة:",
-    function(i){
-      return "#0" + i;
-    }
-  ],
+/* =====================================================
+   إنشاء بطاقات المهام
+===================================================== */
 
-  [
-    "📝",
-    "المطلوب:",
-    function(i){
-      return missionDetails[i-1];
-    }
-  ],
-
-  [
-    "👤",
-    "المسؤول:",
-    null
-  ]
-
-];
+let h = "";
 
 
-var h = "";
+for(let i = 1; i <= 6; i++){
+
+  h += `
+
+    <section class="card">
+
+      <div class="tag">
+
+        MISSION #0${i}
+
+      </div>
 
 
-for(var i=1; i<=6; i++){
+      <div class="row">
 
-  h +=
-  '<section class="card">' +
+        <div class="ic">
+          🎯
+        </div>
 
-    '<div class="tag">' +
-      'MISSION #0' + i +
-    '</div>';
+        <div class="f">
 
+          <b>
+            رقم المهمة:
+          </b>
 
-  rows.forEach(function(r){
+          <div>
+            #0${i}
+          </div>
 
-    h +=
-    '<div class="row">' +
+        </div>
 
-      '<div class="ic">' +
-        r[0] +
-      '</div>' +
-
-      '<div class="f">' +
-
-        '<b>' +
-          r[1] +
-        '</b>';
+      </div>
 
 
-    if(r[2]){
 
-      h +=
-      '<div>' +
-        r[2](i) +
-      '</div>';
+      <div class="row">
 
-    }
+        <div class="ic">
+          📝
+        </div>
 
-    else{
+        <div class="f">
 
-      h +=
-      '<input ' +
-        'type="text" ' +
-        'maxlength="40" ' +
-        'data-m="m' + i + '" ' +
-        'placeholder="سيظهر اسم المسؤول هنا" ' +
-        'readonly' +
-      '>';
+          <b>
+            المطلوب:
+          </b>
 
-    }
+          <div>
+            ${missionDetails[i-1]}
+          </div>
 
+        </div>
 
-    h +=
-      '</div>' +
-    '</div>';
-
-  });
+      </div>
 
 
-  h +=
-  '</section>';
+
+      <div class="row">
+
+        <div class="ic">
+          👤
+        </div>
+
+        <div class="f">
+
+          <b>
+            المسؤول:
+          </b>
+
+          <input
+            type="text"
+            id="missionPerson${i}"
+            placeholder="سيظهر اسم المسؤول هنا"
+            readonly
+          >
+
+        </div>
+
+      </div>
+
+    </section>
+
+  `;
 
 }
 
 
+
 /* بطاقة الموعد النهائي */
 
-h +=
+h += `
 
-'<section class="card dl">' +
+<section class="card dl">
 
-  '<div class="tag">DEADLINE</div>' +
+  <div class="tag">
+    DEADLINE
+  </div>
 
-  '<div class="row">' +
 
-    '<div class="ic">⏰</div>' +
+  <div class="row">
 
-    '<div class="f">' +
+    <div class="ic">
+      ⏰
+    </div>
 
-      '<b>الموعد النهائي:</b>' +
 
-      '<input ' +
-        'type="text" ' +
-        'maxlength="60" ' +
-        'data-m="deadline" ' +
-        'value="30 - 4 - 1448 هـ  |  11 - 10 - 2026 م" ' +
-        'readonly' +
-      '>' +
+    <div class="f">
 
-    '</div>' +
+      <b>
+        الموعد النهائي:
+      </b>
 
-  '</div>' +
 
-'</section>';
+      <input
+        type="text"
+        value="30 - 4 - 1448 هـ  |  11 - 10 - 2026 م"
+        readonly
+      >
+
+    </div>
+
+  </div>
+
+</section>
+
+`;
 
 
 document.getElementById("m").innerHTML = h;
 
 
-/* =====================================================
-   التخزين المحلي للأسماء
-===================================================== */
-
-var DEF = "30 - 4 - 1448 هـ  |  11 - 10 - 2026 م";
-
-var inputs =
-  document.querySelectorAll("input[data-m]");
-
-var st =
-  document.getElementById("st");
-
-
-function ls(k,v){
-
-  try{
-
-    if(v === undefined){
-
-      return localStorage.getItem(k);
-
-    }
-
-    localStorage.setItem(k,v);
-
-  }
-
-  catch(e){}
-
-}
-
 
 /* =====================================================
-   SheetDB
+   SheetDB API
 ===================================================== */
 
 const apiUrl =
-  'https://sheetdb.io/api/v1/imceb02ne6xkh';
+  "https://sheetdb.io/api/v1/imceb02ne6xkh";
+
 
 
 /* =====================================================
@@ -615,14 +960,25 @@ const apiUrl =
 function assignMission(){
 
   const mission =
-    document.getElementById("missionSelect").value;
+    document
+      .getElementById("missionSelect")
+      .value
+      .trim();
+
 
   const name =
-    document.getElementById("assignName").value.trim();
+    document
+      .getElementById("assignName")
+      .value
+      .trim();
+
 
   const message =
     document.getElementById("message");
 
+
+
+  /* التحقق من المهمة */
 
   if(!mission){
 
@@ -634,6 +990,9 @@ function assignMission(){
   }
 
 
+
+  /* التحقق من الاسم */
+
   if(!name){
 
     message.textContent =
@@ -644,27 +1003,46 @@ function assignMission(){
   }
 
 
+
   message.textContent =
     "⏳ جاري تسجيل المهمة...";
 
 
-  /*
-     أولاً نتحقق هل المهمة مأخوذة مسبقاً
-  */
+
+  /* =================================================
+     قراءة البيانات الموجودة
+  ================================================= */
 
   fetch(apiUrl)
 
-  .then(response => response.json())
+  .then(response => {
+
+    if(!response.ok){
+
+      throw new Error(
+        "فشل الاتصال بـ SheetDB"
+      );
+
+    }
+
+    return response.json();
+
+  })
+
 
   .then(data => {
+
+
+    /* هل المهمة مأخوذة؟ */
 
     const alreadyTaken =
       data.some(function(row){
 
-        return row.mission === mission &&
-               row.name;
+        return row.mission &&
+               row.mission.trim() === mission;
 
       });
+
 
 
     if(alreadyTaken){
@@ -674,34 +1052,40 @@ function assignMission(){
 
       loadMissions();
 
-      return;
+      return null;
 
     }
 
 
-    /*
-       تسجيل المهمة
-    */
+
+    /* =================================================
+       إرسال الاسم والمهمة إلى Google Sheet
+    ================================================= */
 
     return fetch(apiUrl, {
 
       method:"POST",
 
       headers:{
-        "Accept":"application/json",
-        "Content-Type":"application/json"
+
+        "Accept":
+          "application/json",
+
+        "Content-Type":
+          "application/json"
+
       },
+
 
       body:JSON.stringify({
 
-        data:[
+        data:{
 
-          {
-            name:name,
-            mission:mission
-          }
+          name:name,
 
-        ]
+          mission:mission
+
+        }
 
       })
 
@@ -709,116 +1093,222 @@ function assignMission(){
 
   })
 
-  .then(function(response){
+
+  .then(response => {
+
 
     if(!response){
-      return;
+
+      return null;
+
     }
+
+
+    if(!response.ok){
+
+      throw new Error(
+        "فشل حفظ البيانات"
+      );
+
+    }
+
 
     return response.json();
 
   })
 
-  .then(function(){
+
+  .then(result => {
+
+
+    if(!result){
+
+      return;
+
+    }
+
+
+    console.log(
+      "SheetDB:",
+      result
+    );
+
 
     message.textContent =
-      "✅ تم استلام المهمة بنجاح!";
+      "✅ تم تسجيل اسمك واستلام المهمة بنجاح!";
 
-    document.getElementById("assignName").value = "";
 
-    document.getElementById("missionSelect").value = "";
+    /* تنظيف الخانات */
+
+    document
+      .getElementById("assignName")
+      .value = "";
+
+
+    document
+      .getElementById("missionSelect")
+      .value = "";
+
+
+    /* تحديث القائمة */
 
     loadMissions();
 
   })
 
-  .catch(function(error){
+
+  .catch(error => {
 
     console.error(error);
 
+
     message.textContent =
-      "❌ حدث خطأ أثناء الحفظ، حاولي مرة أخرى.";
+      "❌ حدث خطأ أثناء الحفظ، تأكدي من إعدادات SheetDB.";
 
   });
 
 }
 
 
+
 /* =====================================================
-   تحميل المهام والأسماء
+   تحميل البيانات من SheetDB
 ===================================================== */
 
 function loadMissions(){
 
   fetch(apiUrl)
 
-  .then(response => response.json())
+  .then(response => {
+
+    if(!response.ok){
+
+      throw new Error(
+        "فشل تحميل البيانات"
+      );
+
+    }
+
+    return response.json();
+
+  })
+
 
   .then(data => {
 
+
     const list =
-      document.getElementById("missionsList");
+      document.getElementById(
+        "missionsList"
+      );
+
 
     list.innerHTML = "";
 
 
-    missionDetails.forEach(function(mission){
 
-      const row =
-        data.find(function(item){
+    /* إنشاء بطاقة لكل مهمة */
 
-          return item.mission === mission &&
-                 item.name;
-
-        });
+    missionDetails.forEach(
+      function(mission,index){
 
 
-      const div =
-        document.createElement("div");
+        const row =
+          data.find(function(item){
 
-      div.className =
-        "mission-result";
+            return item.mission &&
+                   item.mission.trim() === mission &&
+                   item.name &&
+                   item.name.trim();
+
+          });
 
 
-      if(row){
 
-        div.innerHTML =
+        const div =
+          document.createElement("div");
 
-          "<strong>📌 " +
-          mission +
-          "</strong>" +
 
-          '<span class="taken">' +
-          "👤 المسؤول: " +
-          row.name +
-          "</span>";
+        div.className =
+          "mission-result";
+
+
+
+        if(row){
+
+
+          div.innerHTML = `
+
+            <strong>
+              📌 ${mission}
+            </strong>
+
+            <span class="taken">
+              👤 المسؤول: ${row.name}
+            </span>
+
+          `;
+
+
+        }
+
+        else{
+
+
+          div.innerHTML = `
+
+            <strong>
+              📌 ${mission}
+            </strong>
+
+            <span class="available">
+              ✓ المهمة متاحة للاستلام
+            </span>
+
+          `;
+
+        }
+
+
+
+        list.appendChild(div);
+
+
+
+        /* تحديث اسم المسؤول داخل البطاقة */
+
+        const personInput =
+          document.getElementById(
+            "missionPerson" + (index + 1)
+          );
+
+
+        if(personInput){
+
+          if(row){
+
+            personInput.value =
+              row.name;
+
+          }
+
+          else{
+
+            personInput.value =
+              "لم يتم استلام المهمة بعد";
+
+          }
+
+        }
 
       }
 
-      else{
-
-        div.innerHTML =
-
-          "<strong>📌 " +
-          mission +
-          "</strong>" +
-
-          '<span class="available">' +
-          "✓ المهمة متاحة للاستلام" +
-          "</span>";
-
-      }
-
-
-      list.appendChild(div);
-
-    });
-
-    updateMissionCards(data);
+    );
 
   })
 
-  .catch(function(error){
+
+  .catch(error => {
 
     console.error(error);
 
@@ -826,52 +1316,6 @@ function loadMissions(){
 
 }
 
-
-/* =====================================================
-   إظهار اسم المسؤول داخل بطاقة المهمة
-===================================================== */
-
-function updateMissionCards(data){
-
-  missionDetails.forEach(function(mission,index){
-
-    const input =
-      document.querySelector(
-        'input[data-m="m' + (index+1) + '"]'
-      );
-
-
-    if(!input){
-      return;
-    }
-
-
-    const row =
-      data.find(function(item){
-
-        return item.mission === mission &&
-               item.name;
-
-      });
-
-
-    if(row){
-
-      input.value =
-        row.name;
-
-    }
-
-    else{
-
-      input.value =
-        "لم يتم استلام المهمة بعد";
-
-    }
-
-  });
-
-}
 
 
 /* =====================================================
@@ -885,5 +1329,7 @@ window.addEventListener(
 
 </script>
 
+
 </body>
+
 </html>
