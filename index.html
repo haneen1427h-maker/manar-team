@@ -35,7 +35,7 @@ main{max-width:960px;margin:-10px auto 0;padding:20px 14px 40px;display:grid;gri
 <body>
 <header>
   <div class="top">
-    <div class="logos" style="color: #bcd0f0;">منار العلم · EL MANAR</div>
+    <div class="logos" style="color: #bcd0f0;">مَنار العِلم EL MANAR</div>
     <div class="big">CONFIDENTIAL<br><span>TEAM MISSION</span></div>
   </div>
   <div class="title">☆ ملف المهمة ☆</div>
@@ -95,5 +95,69 @@ inputs.forEach(function(el){var k=el.dataset.m;var v=ls(k);if(v)el.value=v;else 
   });
 })();
 </script>
+
+<div style="text-align: center; margin: 20px; color: #fff;">
+    <h3>سجل أسماء الفريق / الزوار</h3>
+    <input type="text" id="userName" placeholder="اكتب اسمك هنا..." style="padding: 8px; border-radius: 5px; border: none; width: 200px; margin-left: 5px;">
+    <button onclick="saveName()" style="padding: 8px 15px; border-radius: 5px; border: none; background: #00bcd4; color: #fff; cursor: pointer;">حفظ الاسم</button>
+    
+    <ul id="namesList" style="list-style: none; padding: 0; margin-top: 15px;">
+        <!-- ستظهر الأسماء هنا تلقائياً -->
+    </ul>
+</div>
+
+<script>
+    const apiUrl = 'https://sheetdb.io/api/v1/imceb02ne6xkh';
+  
+    function saveName() {
+        const nameInput = document.getElementById('userName').value;
+        if (!nameInput) {
+            alert('الرجاء كتابة الاسم أولاً!');
+            return;
+        }
+
+        fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                data: { name: nameInput }
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert('تم حفظ الاسم بنجاح!');
+            document.getElementById('userName').value = '';
+            loadNames(); // تحديث القائمة مباشرة
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+    // دالة لجلب وعرض الأسماء لكل الزوار
+    function loadNames() {
+        fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            const list = document.getElementById('namesList');
+            list.innerHTML = '';
+            data.forEach(row => {
+                if(row.name) {
+                    const li = document.createElement('li');
+                    li.textContent = row.name;
+                    li.style.margin = '5px 0';
+                    li.style.background = 'rgba(255,255,255,0.1)';
+                    li.style.padding = '5px';
+                    li.style.borderRadius = '4px';
+                    list.appendChild(li);
+                }
+            });
+        });
+    }
+
+    window.onload = loadNames;
+</script>
+
 </body>
 </html>
